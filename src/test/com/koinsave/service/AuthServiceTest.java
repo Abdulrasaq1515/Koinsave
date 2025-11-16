@@ -1,5 +1,6 @@
 package com.koinsave.service;
 
+import com.koinsave.dto.request.LoginRequest;
 import com.koinsave.dto.request.RegisterRequest;
 import com.koinsave.dto.response.AuthResponse;
 import com.koinsave.exception.AuthException;
@@ -97,7 +98,7 @@ class AuthServiceTest {
 
     @Test
     void login_WithValidCredentials_ShouldReturnAuthResponse() {
-        var loginRequest = new com.koinsave.dto.request.LoginRequest("test@example.com", "password123");
+        LoginRequest loginRequest = new LoginRequest("test@example.com", "password123");
 
         when(userRepository.findByEmail(loginRequest.getEmail())).thenReturn(Optional.of(testUser));
         when(passwordUtil.matches(loginRequest.getPassword(), testUser.getPassword())).thenReturn(true);
@@ -117,7 +118,7 @@ class AuthServiceTest {
 
     @Test
     void login_WithInvalidEmail_ShouldThrowAuthException() {
-        var loginRequest = new com.koinsave.dto.request.LoginRequest("wrong@example.com", "password123");
+        LoginRequest loginRequest = new com.koinsave.dto.request.LoginRequest("wrong@example.com", "password123");
 
         when(userRepository.findByEmail(loginRequest.getEmail())).thenReturn(Optional.empty());
 
@@ -133,7 +134,7 @@ class AuthServiceTest {
 
     @Test
     void login_WithInvalidPassword_ShouldThrowAuthException() {
-        var loginRequest = new com.koinsave.dto.request.LoginRequest("test@example.com", "wrongpassword");
+        LoginRequest loginRequest = new com.koinsave.dto.request.LoginRequest("test@example.com", "wrongpassword");
 
         when(userRepository.findByEmail(loginRequest.getEmail())).thenReturn(Optional.of(testUser));
         when(passwordUtil.matches(loginRequest.getPassword(), testUser.getPassword())).thenReturn(false);
@@ -150,7 +151,7 @@ class AuthServiceTest {
 
     @Test
     void login_WithInactiveUser_ShouldThrowAuthException() {
-        var loginRequest = new com.koinsave.dto.request.LoginRequest("test@example.com", "password123");
+        LoginRequest loginRequest = new com.koinsave.dto.request.LoginRequest("test@example.com", "password123");
         testUser.setActive(false);
 
         when(userRepository.findByEmail(loginRequest.getEmail())).thenReturn(Optional.of(testUser));

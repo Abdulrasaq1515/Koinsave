@@ -46,10 +46,8 @@ public class RateLimitFilter extends OncePerRequestFilter {
             );
             return;
         }
-
         filterChain.doFilter(request, response);
     }
-
     private boolean shouldSkipRateLimit(HttpServletRequest request) {
         return request.getRequestURI().startsWith("/api/auth");
     }
@@ -72,7 +70,6 @@ public class RateLimitFilter extends OncePerRequestFilter {
                 count.set(0);
                 lastResetTime = currentTime;
             }
-
             return count.incrementAndGet() <= requestsPerMinute;
         }
     }
