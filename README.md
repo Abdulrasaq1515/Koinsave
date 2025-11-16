@@ -29,4 +29,4 @@ cd koinsave
 mvn clean install
 mvn spring-boot:run
 
-# Application runs on http://localhost:8080
+#Application runs on http://localhost:8080
