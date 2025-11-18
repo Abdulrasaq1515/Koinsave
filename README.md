@@ -1,4 +1,4 @@
-# 🏦 Koinsave - Digital Wallet API
+# Koinsave - Digital Wallet API
 
 ![Java](https://img.shields.io/badge/Java-21-blue)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2.0-green)
@@ -7,15 +7,15 @@
 
 A production-ready REST API for digital wallet operations with JWT authentication, secure money transfers, and comprehensive transaction management.
 
-## 🎯 Features
+## Features
 
-- **🔐 Secure Authentication** - JWT tokens with BCrypt password hashing
-- **💸 Atomic Money Transfers** - Pessimistic locking & transaction safety
-- **🛡️ Enterprise Security** - Rate limiting, input validation, SQL injection protection
-- **📊 Transaction History** - Complete audit trail with balance tracking
-- **🚀 Production Ready** - Environment configuration, error handling, logging
+- Secure Authentication** - JWT tokens with BCrypt password hashing
+- Atomic Money Transfers** - Pessimistic locking & transaction safety
+- Enterprise Security** - Rate limiting, input validation, SQL injection protection
+- Transaction History** - Complete audit trail with balance tracking
+- Production Ready** - Environment configuration, error handling, logging
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Java 21+
