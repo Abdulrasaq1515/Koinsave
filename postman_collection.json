@@ -14,6 +14,16 @@
       "key": "token",
       "value": "",
       "type": "string"
+    },
+    {
+      "key": "userId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "receiverId",
+      "value": "",
+      "type": "string"
     }
   ],
   "item": [
@@ -30,7 +40,7 @@
                   "if (pm.response.code === 201) {",
                   "    const jsonData = pm.response.json();",
                   "    pm.collectionVariables.set(\"token\", jsonData.token);",
-                  "    pm.environment.set(\"userId\", jsonData.userId);",
+                  "    pm.collectionVariables.set(\"userId\", jsonData.userId);",
                   "}"
                 ]
               }
@@ -39,10 +49,7 @@
           "request": {
             "method": "POST",
             "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
+              { "key": "Content-Type", "value": "application/json" }
             ],
             "body": {
               "mode": "raw",
@@ -64,7 +71,7 @@
                 "exec": [
                   "if (pm.response.code === 201) {",
                   "    const jsonData = pm.response.json();",
-                  "    pm.environment.set(\"receiverId\", jsonData.userId);",
+                  "    pm.collectionVariables.set(\"receiverId\", jsonData.userId);",
                   "}"
                 ]
               }
@@ -73,14 +80,11 @@
           "request": {
             "method": "POST",
             "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
+              { "key": "Content-Type", "value": "application/json" }
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"john.dan@example.com\",\n  \"password\": \"password123\",\n  \"fullName\": \"John dan\",\n  \"initialBalance\": 500.00\n}"
+              "raw": "{\n  \"email\": \"john.dan@example.com\",\n  \"password\": \"password123\",\n  \"fullName\": \"John Dan\",\n  \"initialBalance\": 500.00\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/api/auth/register",
@@ -107,10 +111,7 @@
           "request": {
             "method": "POST",
             "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
+              { "key": "Content-Type", "value": "application/json" }
             ],
             "body": {
               "mode": "raw",
@@ -133,18 +134,12 @@
           "request": {
             "method": "POST",
             "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"receiverId\": 2,\n  \"amount\": 100.00,\n  \"description\": \"Payment for services\"\n}"
+              "raw": "{\n  \"receiverId\": {{receiverId}},\n  \"amount\": 100.00,\n  \"description\": \"Payment for services\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/api/transactions/transfer",
@@ -158,10 +153,7 @@
           "request": {
             "method": "GET",
             "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
+              { "key": "Authorization", "value": "Bearer {{token}}" }
             ],
             "url": {
               "raw": "{{baseUrl}}/api/transactions/history",
@@ -175,10 +167,7 @@
           "request": {
             "method": "GET",
             "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
+              { "key": "Authorization", "value": "Bearer {{token}}" }
             ],
             "url": {
               "raw": "{{baseUrl}}/api/transactions/balance",
@@ -197,18 +186,12 @@
           "request": {
             "method": "POST",
             "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"receiverId\": 2,\n  \"amount\": 99999.00,\n  \"description\": \"This should fail\"\n}"
+              "raw": "{\n  \"receiverId\": {{receiverId}},\n  \"amount\": 99999.00,\n  \"description\": \"This should fail\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/api/transactions/transfer",
@@ -222,18 +205,12 @@
           "request": {
             "method": "POST",
             "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"receiverId\": 1,\n  \"amount\": 50.00,\n  \"description\": \"This should fail\"\n}"
+              "raw": "{\n  \"receiverId\": {{userId}},\n  \"amount\": 50.00,\n  \"description\": \"This should fail\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/api/transactions/transfer",
@@ -247,10 +224,7 @@
           "request": {
             "method": "POST",
             "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
+              { "key": "Content-Type", "value": "application/json" }
             ],
             "body": {
               "mode": "raw",

@@ -10,3 +10,4 @@ public class KoinsaveApplication {
         SpringApplication.run(KoinsaveApplication.class, args);
     }
 }
+

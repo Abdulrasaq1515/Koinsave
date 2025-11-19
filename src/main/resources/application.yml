@@ -25,7 +25,7 @@ spring:
       path: /h2-console
 
 jwt:
-  secret: ${JWT_SECRET:changeThisInProduction123!}
+  secret: ${JWT_SECRET:thisIsAVeryLongSecretKeyForJWTThatIsMoreThan32Characters!}
   expiration: ${JWT_EXPIRATION:86400000}
 
 rate-limit:
